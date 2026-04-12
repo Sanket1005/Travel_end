@@ -1,14 +1,15 @@
 import express from "express";
 import mongoose from "mongoose";
+import { configDotenv } from "dotenv";
 
 const app = express();
-
+configDotenv();
 app.get("/app", (req, res) => {
     res.send("hello world")
     })
 mongoose
 .connect(
-    "mongodb+srv://sanketshrestha1974_db_user:wqhOfp17YZngbskQ@cluster0.5twbtqj.mongodb.net/?appName=Cluster0")
+    process.env.MONGO_URL)
 .then(() => console.log("connected to the datavbaase"))
 .catch((err) => console.error("MongoDB error:", err));
 
